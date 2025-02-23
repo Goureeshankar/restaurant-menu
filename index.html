@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurant Menu</title>
+    <style>
+        /* Basic Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .menu-item {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 5px;
+            background-color: white;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to My Restaurant!</h1>
+
+    <!-- Menu Items -->
+    <div class="menu-item">
+        <h3>Pizza - ₹200</h3>
+        <button onclick="addToCart('Pizza', 200)">Add to Cart</button>
+    </div>
+
+    <div class="menu-item">
+        <h3>Burger - ₹150</h3>
+        <button onclick="addToCart('Burger', 150)">Add to Cart</button>
+    </div>
+
+    <div class="menu-item">
+        <h3>Pasta - ₹180</h3>
+        <button onclick="addToCart('Pasta', 180)">Add to Cart</button>
+    </div>
+
+    <!-- और items डालें -->
+</body>
+</html>
