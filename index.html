@@ -32,6 +32,13 @@
         button:hover {
             background-color: #45a049;
         }
+        #cart {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: white;
+        }
     </style>
 </head>
 <body>
@@ -54,5 +61,56 @@
     </div>
 
     <!-- और items डालें -->
+
+    <!-- Cart Section -->
+    <div id="cart">
+        <h2>Your Cart</h2>
+        <ul id="cart-items"></ul>
+        <p>Total: ₹<span id="cart-total">0</span></p>
+        <button onclick="checkout()">Checkout</button>
+    </div>
+
+    <script>
+        let cart = [];
+        let total = 0;
+
+        // Function to add items to the cart
+        function addToCart(item, price) {
+            cart.push({ item, price });
+            total += price;
+            updateCartDisplay();
+        }
+
+        // Function to update the cart display
+        function updateCartDisplay() {
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+
+            // Clear the cart items list
+            cartItems.innerHTML = '';
+
+            // Add each item to the cart list
+            cart.forEach((cartItem, index) => {
+                const li = document.createElement('li');
+                li.textContent = `${cartItem.item} - ₹${cartItem.price}`;
+                cartItems.appendChild(li);
+            });
+
+            // Update the total price
+            cartTotal.textContent = total;
+        }
+
+        // Function to handle checkout
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+            } else {
+                alert(`Thank you for your order! Total: ₹${total}`);
+                cart = [];
+                total = 0;
+                updateCartDisplay();
+            }
+        }
+    </script>
 </body>
 </html>
