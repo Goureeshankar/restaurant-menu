@@ -1,49 +1,40 @@
-let cart = [];
-let total = 0;
+let cartItems = [];
+let totalAmount = 0;
 
-// Function to add items to the cart
-function addToCart(name, price) {
-    cart.push({ name, price });
-    total += price;
+function addToCart(item, price) {
+    cartItems.push({ item, price });
     updateCart();
 }
 
-// Function to update the cart display
 function updateCart() {
-    const cartItems = document.getElementById('cart-items');
-    const cartTotal = document.getElementById('cart-total');
-    cartItems.innerHTML = '';
-    cart.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = `${item.name} - ₹${item.price}`;
-        cartItems.appendChild(li);
+    let cartList = document.getElementById("cart");
+    let totalElement = document.getElementById("total");
+    cartList.innerHTML = "";
+    totalAmount = 0;
+
+    cartItems.forEach(cartItem => {
+        let li = document.createElement("li");
+        li.textContent = `${cartItem.item} - ₹${cartItem.price}`;
+        cartList.appendChild(li);
+        totalAmount += cartItem.price;
     });
-    cartTotal.textContent = total;
+
+    totalElement.textContent = totalAmount;
+    updateUPILink();
 }
 
-// Function to handle checkout
+function updateUPILink() {
+    let upiID = "9575693559-2@axl";
+    let upiLink = `upi://pay?pa=${upiID}&pn=Restaurant&mc=&tid=&tr=&tn=Restaurant Payment&am=${totalAmount}&cu=INR`;
+    
+    let payButton = document.getElementById("payButton");
+    payButton.href = upiLink;
+}
+
 function checkout() {
-    // Create an order object
-    const order = {
-        items: JSON.stringify(cart), // Convert cart array to string
-        total: total,
-        timestamp: new Date()
-    };
-
-    // Log the Firestore database object to the console
-    console.log("Firestore Database:", db);
-
-    // Save order to Firestore
-    db.collection('orders').add(order)
-        .then(() => {
-            alert('Order placed successfully! Total: ₹' + total);
-            // Clear the cart
-            cart = [];
-            total = 0;
-            updateCart();
-        })
-        .catch((error) => {
-            console.error('Error saving order: ', error);
-            alert('Failed to place order. Please try again.');
-        });
+    if (cartItems.length === 0) {
+        alert("Your cart is empty!");
+    } else {
+        alert(`Total amount: ₹${totalAmount}. Click on 'Pay via UPI' to complete payment.`);
+    }
 }
