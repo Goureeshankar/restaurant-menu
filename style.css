@@ -1,98 +1,53 @@
-/* General Styling */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
+    background-color: #f4f4f4;
     text-align: center;
-    margin: 0;
-    padding: 20px;
+    margin: 20px;
 }
 
-/* Main Container */
 .container {
     width: 350px;
-    background: white;
+    margin: auto;
+    background: #fff;
+    padding: 15px;
     border-radius: 10px;
-    padding: 20px;
-    margin: 20px auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: left;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
 
-/* Header */
-h2 {
-    text-align: center;
-    color: #333;
-    font-size: 22px;
-}
-
-/* Menu Items */
 .menu-item {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
 }
 
-/* Price */
-.price {
-    font-weight: bold;
-    color: #28a745;
+button {
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
-/* Add to Cart Button */
 .add-to-cart {
     background-color: #28a745;
     color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
 }
 
-.add-to-cart:hover {
-    background-color: #218838;
-}
-
-/* Cart List */
-#cart {
-    list-style: none;
-    padding: 0;
-}
-
-#cart li {
-    padding: 5px;
-    border-bottom: 1px solid #ddd;
-}
-
-/* Checkout Button */
-.checkout-btn {
-    background-color: #ff6b00;
+.remove-btn {
+    background-color: #dc3545;
     color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
+    margin-left: 10px;
+}
+
+.checkout-btn {
+    background-color: #ff9800;
+    color: white;
     width: 100%;
-    border-radius: 5px;
-    margin-top: 10px;
+    padding: 10px;
 }
 
-.checkout-btn:hover {
-    background-color: #e65a00;
-}
-
-/* UPI Payment Section */
 .upi-btn {
     background-color: #007bff;
     color: white;
-    border: none;
     padding: 10px;
-    cursor: pointer;
-    width: 100%;
-    border-radius: 5px;
-    margin-top: 10px;
-}
-
-.upi-btn:hover {
-    background-color: #0056b3;
 }

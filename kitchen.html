@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant Kitchen</title>
     <style>
         body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
@@ -14,10 +16,12 @@
     <h1>👨‍🍳 Kitchen Orders</h1>
     <div id="ordersList"></div>
 
-    <!-- Firebase SDK -->
+    <!-- 🔔 Order Notification Sound -->
+    <audio id="notificationSound" src="https://www.soundjay.com/button/beep-07.wav"></audio>
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-        import { getFirestore, collection, addDoc, getDocs, onSnapshot, updateDoc, doc } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
+        import { getFirestore, collection, onSnapshot, updateDoc, doc } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
 
         // 🔥 Firebase Configuration
         const firebaseConfig = {
@@ -34,37 +38,61 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // 🔥 Real-Time Orders Fetching
         const ordersList = document.getElementById("ordersList");
+        const notificationSound = document.getElementById("notificationSound");
 
+        // 🔔 Permission for Browser Notification
+        if (Notification.permission !== "granted") {
+            Notification.requestPermission();
+        }
+
+        // 🔥 Real-Time Orders Fetching with Notification
         onSnapshot(collection(db, "orders"), (snapshot) => {
             ordersList.innerHTML = "";
             snapshot.forEach((doc) => {
                 const order = doc.data();
                 const orderId = doc.id;
 
+                // Handle JSON parse error if `items` is already an object
+                let itemsList = "No Items";
+                try {
+                    const items = typeof order.items === "string" ? JSON.parse(order.items) : order.items;
+                    itemsList = items.map(item => `${item.item} (x1)`).join(", ");
+                } catch (e) {
+                    console.error("Error parsing items", e);
+                }
+
                 const orderDiv = document.createElement("div");
                 orderDiv.classList.add("order-box");
                 orderDiv.innerHTML = `
-                    <h3>🛎️ Table: ${order.table || "N/A"}</h3>
-                    <p><strong>Items:</strong> ${JSON.parse(order.items).map(item => `${item.item} (x1)`).join(", ")}</p>
+                    <h3>🍾️ Table: ${order.table || "N/A"}</h3>
+                    <p><strong>Items:</strong> ${itemsList}</p>
                     <p><strong>Total:</strong> ₹${order.total}</p>
                     <p><strong>Status:</strong> <span id="status-${orderId}">${order.status || "Pending"}</span></p>
                     <button onclick="updateStatus('${orderId}')">✅ Mark as Completed</button>
                 `;
-
                 ordersList.appendChild(orderDiv);
             });
+
+            // 🔔 Play Sound Alert
+            notificationSound.play();
+
+            // 🔔 Show Browser Notification
+            if (Notification.permission === "granted") {
+                new Notification("📬 New Order Received!", {
+                    body: "Check the kitchen dashboard for new orders.",
+                    icon: "https://cdn-icons-png.flaticon.com/512/1533/1533851.png"
+                });
+            }
         });
 
         // 🔹 Order Status Update Function
-        async function updateStatus(orderId) {
+        window.updateStatus = async function (orderId) {
             const orderRef = doc(db, "orders", orderId);
             await updateDoc(orderRef, { status: "Completed" });
             document.getElementById(`status-${orderId}`).innerText = "Completed";
             alert("✅ Order Completed!");
-        }
+        };
     </script>
-
 </body>
 </html>
