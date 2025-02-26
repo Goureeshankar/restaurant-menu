@@ -75,7 +75,7 @@
             totalElement.innerText = total;
 
             // UPI पेमेंट लिंक अपडेट करें
-            let upiID = "gourishankar9575@ybl";  // अपना UPI ID यहाँ डालें
+            let upiID = "upi://pay?pa=gourishankar9575@ybl&pn=gaureeshankar&mc=0000&mode=02&purpose=00";  // अपना UPI ID यहाँ डालें
             payButton.href = `upi://pay?pa=${upiID}&pn=Restaurant&am=${total}&cu=INR&tn=Order%20Payment`;
         }
 
