@@ -24,7 +24,7 @@ function updateCart() {
 }
 
 function updateUPILink() {
-    let upiID = "9575693559-2@axl";
+    let upiID = "gourishankar9575@ybl";
     let encodedUPI = encodeURIComponent(upiID);
     let encodedNote = encodeURIComponent("Restaurant Payment");
     let upiLink = `upi://pay?pa=${encodedUPI}&pn=Restaurant&mc=&tid=&tr=&tn=${encodedNote}&am=${totalAmount}&cu=INR`;
