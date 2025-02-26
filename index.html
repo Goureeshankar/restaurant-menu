@@ -43,7 +43,7 @@
         </a>
         <br><br>
         <h3>Scan to Pay</h3>
-        <img id="qrCode" src="your_qr_code_image.png" style="width: 200px; height: 200px;">
+        <img id="qrCode" src="images/qr.png" style="width: 200px; height: 200px;">
     </div>
 
     <script>
@@ -79,8 +79,8 @@
 
             // UPI पेमेंट लिंक अपडेट करें
             let upiID = "9575693559-2@axl";  // अपना UPI ID यहाँ डालें
-            payButton.href = `upi:/9575693559-2@axl/pay?pa=${upiID}&pn=Restaurant&mc=&tid=&tr=&tn=Order%20Payment&am=${total}&cu=INR`;
-        }
+            payButton.href = `upi://pay?pa=${upiID}&pn=Restaurant&am=${total}&cu=INR&tn=Order%20Payment`;
+
 
         function checkout() {
             if (cart.length === 0) {
