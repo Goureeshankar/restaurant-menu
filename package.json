@@ -1,0 +1,29 @@
+{
+  "name": "restaurant-menu",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000r\u0000e\u0000s\u0000t\u0000a\u0000u\u0000r\u0000a\u0000n\u0000t\u0000-\u0000m\u0000e\u0000n\u0000u\u0000\r\u0000 \u0000",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Goureeshankar/restaurant-menu.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Goureeshankar/restaurant-menu/issues"
+  },
+  "homepage": "https://github.com/Goureeshankar/restaurant-menu#readme",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "twilio": "^5.5.1"
+  },
+  "devDependencies": {
+    "@ljharb/tsconfig": "^0.3.2",
+    "typescript": "^5.8.2"
+  }
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Menu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>🍽 Restaurant Menu</h2>
+        <div class="menu-item">
+            <span>🍕 Pizza</span>
+            <span class="price">₹200</span>
+            <button class="add-to-cart" onclick="addToCart('Pizza', 200)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+            <span>🍔 Burger</span>
+            <span class="price">₹99</span>
+            <button class="add-to-cart" onclick="addToCart('Burger', 99)">Add to Cart</button>
+        </div>
+        <div class="menu-item">
+            <span>🥤 Cold Drink</span>
+            <span class="price">₹49</span>
+            <button class="add-to-cart" onclick="addToCart('Cold Drink', 49)">Add to Cart</button>
+        </div>
+    </div>
+
+    <!-- Cart Section -->
+    <div class="container">
+        <h2>🛒 Your Cart</h2>
+        <ul id="cart"></ul>
+        <p>Total: ₹<span id="total">0</span></p>
+        <button class="checkout-btn" onclick="checkout()">Checkout</button>
+    </div>
+
+    <!-- UPI Payment Section -->
+    <div class="container">
+        <h2>💳 Payment via UPI</h2>
+        <a id="payButton" href="#" target="_blank">
+            <button class="upi-btn">Pay via UPI</button>
+        </a>
+    </div>
+
+    <script>
+        let cart = [];
+        let total = 0;
+
+        function addToCart(item, price) {
+            cart.push({ item, price });
+            total += price;
+            updateCart();
+        }
+
+        function removeFromCart(index) {
+            total -= cart[index].price;
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function updateCart() {
+            let cartList = document.getElementById("cart");
+            let totalElement = document.getElementById("total");
+            let payButton = document.getElementById("payButton");
+
+            cartList.innerHTML = "";
+            cart.forEach((cartItem, index) => {
+                let listItem = document.createElement("li");
+                listItem.innerHTML = `${cartItem.item} - ₹${cartItem.price} 
+                    <button onclick="removeFromCart(${index})">Remove</button>`;
+                cartList.appendChild(listItem);
+            });
+
+            totalElement.innerText = total;
+
+            // UPI Payment Link Update
+            let upiID = "gourishankar9575@ybl"; // Replace with your UPI ID
+            let note = `Payment for Restaurant Order (Total: ₹${total})`;
+            let upiLink = `upi://pay?pa=${upiID}&pn=Gourishankar&am=${total}&tn=${encodeURIComponent(note)}&cu=INR`;
+
+            payButton.href = upiLink;
+            payButton.textContent = `Pay ₹${total} via UPI`;
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert("Cart is empty!");
+            } else {
+                alert(`Total amount: ₹${total}. Click on 'Pay via UPI' to complete payment.`);
+                document.getElementById("payButton").click();
+            }
+        }
+    </script>
+
+</body>
+</html>
