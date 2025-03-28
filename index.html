@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Babbu Dhaba - Digital Menu</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -22,9 +21,8 @@
             <button class="category-btn" data-category="beverages">Beverages</button>
         </div>
         
-        <!-- Starters Section -->
         <section class="menu-section active" id="starters">
-            <h2 class="section-title"><i class="fas fa-utensils"></i> Starters</h2>
+            <h2 class="section-title">Starters</h2>
             
             <div class="menu-item">
                 <div class="item-info">
@@ -41,28 +39,20 @@
                     <button class="add-btn">Add</button>
                 </div>
             </div>
-            
-            <!-- More starter items... -->
         </section>
-        
-        <!-- Other menu sections... -->
     </div>
     
-    <!-- Floating Cart Button -->
     <div class="cart-toggle">
         <i class="fas fa-shopping-cart"></i>
         <span class="cart-count">0</span>
     </div>
-    
-    <!-- Cart Panel -->
+
     <div class="cart-container">
         <div class="cart-header">
             <h3>Your Order</h3>
-            <button class="close-cart"><i class="fas fa-times"></i></button>
+            <button class="close-cart">&times;</button>
         </div>
-        <div class="cart-items">
-            <!-- Cart items will be added here dynamically -->
-        </div>
+        <div class="cart-items"></div>
         <div class="cart-footer">
             <div class="cart-total">
                 <span>Total:</span>
@@ -71,7 +61,7 @@
             <button class="checkout-btn">Place Order</button>
         </div>
     </div>
-    
+
     <script src="script.js"></script>
 </body>
 </html>
