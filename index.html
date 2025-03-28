@@ -3,44 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurant Menu</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Babbu Dhaba - Digital Menu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>🍽️ Restaurant Menu</h1>
+        <header>
+            <div class="logo">Babbu Dhaba</div>
+            <div class="tagline">Authentic Indian Cuisine</div>
+        </header>
         
-        <!-- QR Code Display -->
-        <div class="qr-container">
-            <img src="{{ url_for('static', filename='qrcode.png') }}" alt="Scan to Order" width="150">
-            <p>Scan QR to view menu</p>
+        <div class="menu-categories">
+            <button class="category-btn active" data-category="all">All Items</button>
+            <button class="category-btn" data-category="starters">Starters</button>
+            <button class="category-btn" data-category="main-course">Main Course</button>
+            <button class="category-btn" data-category="breads">Breads</button>
+            <button class="category-btn" data-category="beverages">Beverages</button>
         </div>
-
-        <!-- Menu Items -->
-        <div class="menu">
-            <div class="item" onclick="addToCart('Pizza', 200)">
-                <span>🍕 Pizza</span>
-                <span>₹200</span>
+        
+        <!-- Starters Section -->
+        <section class="menu-section active" id="starters">
+            <h2 class="section-title"><i class="fas fa-utensils"></i> Starters</h2>
+            
+            <div class="menu-item">
+                <div class="item-info">
+                    <div class="item-name">Paneer Tikka</div>
+                    <div class="item-desc">Cottage cheese marinated in spices and grilled</div>
+                </div>
+                <div class="item-price">₹220</div>
+                <div class="item-actions">
+                    <div class="quantity-control">
+                        <button class="quantity-btn minus">-</button>
+                        <span class="quantity">0</span>
+                        <button class="quantity-btn plus">+</button>
+                    </div>
+                    <button class="add-btn">Add</button>
+                </div>
             </div>
-            <div class="item" onclick="addToCart('Burger', 100)">
-                <span>🍔 Burger</span>
-                <span>₹100</span>
-            </div>
-            <div class="item" onclick="addToCart('Pasta', 150)">
-                <span>🍝 Pasta</span>
-                <span>₹150</span>
-            </div>
+            
+            <!-- More starter items... -->
+        </section>
+        
+        <!-- Other menu sections... -->
+    </div>
+    
+    <!-- Floating Cart Button -->
+    <div class="cart-toggle">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </div>
+    
+    <!-- Cart Panel -->
+    <div class="cart-container">
+        <div class="cart-header">
+            <h3>Your Order</h3>
+            <button class="close-cart"><i class="fas fa-times"></i></button>
         </div>
-
-        <!-- Order Summary -->
-        <div class="cart">
-            <h2>🛒 Your Order</h2>
-            <div id="cart-items"></div>
-            <p>Total: ₹<span id="total">0</span></p>
-            <button onclick="placeOrder()">Place Order</button>
+        <div class="cart-items">
+            <!-- Cart items will be added here dynamically -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span>₹<span id="cart-total">0</span></span>
+            </div>
+            <button class="checkout-btn">Place Order</button>
         </div>
     </div>
-
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    
+    <script src="script.js"></script>
 </body>
 </html>
